@@ -11,7 +11,7 @@ class CanvasRenderer {
     this.lastDraw = 0;
     this.draws = 0;
 
-    this.fgColor = '#0f0';
+    this.fgColor = '#FFFFFF';
     this.bgColor = 'transparent';
   }
 

@@ -9,9 +9,7 @@ class Chip8 {
     this.running = null;
     this.renderer = null;
 
-    const memory = new ArrayBuffer(0x1000);
-
-    this.memory = new Uint8Array(memory);
+    this.memory = new Uint8Array(4096);
     this.v = new Array(16);
     this.i = null;
     this.stack = new Array(16);
@@ -71,10 +69,8 @@ class Chip8 {
     } else if (y < 0) {
       y += height;
     }
-    console.log(this.display[location]);
 
     this.display[location] ^= 1
-    console.log(this.display[location]);
 
     return !this.display[location];
   }
@@ -161,8 +157,6 @@ class Chip8 {
       }
       requestAnimationFrame(me);
     });
-
-
   }
 
   stop() {
