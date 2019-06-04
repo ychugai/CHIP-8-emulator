@@ -27,7 +27,6 @@ class Chip8 {
     for (let i = 0; i < program.length; i++) {
       this.memory[i + 0x200] = program[i];
     }
-    console.log('load')
   }
 
   setKey(key) {
@@ -72,15 +71,15 @@ class Chip8 {
     } else if (y < 0) {
       y += height;
     }
+    console.log(this.display[location]);
 
-    this.display[location] ^= 1;
+    this.display[location] ^= 1
+    console.log(this.display[location]);
 
     return !this.display[location];
   }
 
   reset() {
-
-    let i;
 
     // Reset memory.
     for (let i = 0; i < this.memory.length; i++) {
@@ -137,8 +136,6 @@ class Chip8 {
   }
 
   start() {
-    console.log("start")
-    let i;
 
     if (!this.renderer) {
       throw new Error('You must specify a renderer.');
@@ -147,8 +144,7 @@ class Chip8 {
     this.running = true;
 
     const self = this;
-    console.log(this)
-    requestAnimFrame(function me() {
+    requestAnimationFrame(function me() {
       for (let i = 0; i < 10; i++) {
         if (self.running) {
           self.emulateCycle();
@@ -163,9 +159,7 @@ class Chip8 {
       if (!(self.step++ % 2)) {
         self.handleTimers();
       }
-
-      requestAnimFrame(me);
-
+      requestAnimationFrame(me);
     });
 
 
@@ -356,11 +350,8 @@ class Chip8 {
               this.v[x] -= 256;
             }
             break;
-
         }
-
         break;
-
         // SNE Vx, Vy
         // 9xy0
         // Skip next instruction if Vx is not equal to Vy.
@@ -400,10 +391,9 @@ class Chip8 {
         const height = opcode & 0x000F;
         const registerX = this.v[x];
         const registerY = this.v[y];
-        let spr;
 
         for (let y = 0; y < height; y++) {
-          spr = this.memory[this.i + y];
+          let spr = this.memory[this.i + y];
           for (let x = 0; x < 8; x++) {
             if ((spr & 0x80) > 0) {
               if (this.setPixel(registerX + x, registerY + y)) {

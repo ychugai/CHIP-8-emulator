@@ -16,40 +16,32 @@ class CanvasRenderer {
   }
 
   clear() {
-    this.ctx.clearRect(0, 0, this.width * this.cellSize, this.height * this.cellSize);
+    const { width, height, cellSize } = this;
+    this.ctx.clearRect(0, 0, width * cellSize, height * cellSize);
   }
 
   render(display) {
+    const { width, cellSize, bgColor, fgColor } = this;
     this.clear();
-    this.lastRenderedData = display;
-    let i, x, y;
-    for (i = 0; i < display.length; i++) {
-      x = (i % this.width) * this.cellSize;
-      y = Math.floor(i / this.width) * this.cellSize;
+    for (let i = 0; i < display.length; i++) {
+      let x = (i % width) * cellSize;
+      let y = Math.floor(i / width) * cellSize;
 
-      this.ctx.fillStyle = [this.bgColor, this.fgColor][display[i]];
-      this.ctx.fillRect(x, y, this.cellSize, this.cellSize);
+      this.ctx.fillStyle = [bgColor, fgColor][display[i]];
+      this.ctx.fillRect(x, y, cellSize, cellSize);
     }
     this.draws++;
   }
 
   setCellSize(cellSize) {
+    const { width, height } = this;
+    
     this.cellSize = +cellSize;
 
-    this.canvas.width = cellSize * this.width;
-    this.canvas.height = cellSize * this.height;
+    this.canvas.width = cellSize * width;
+    this.canvas.height = cellSize * height;
 
     this.render(this.lastRenderedData);
-  }
-
-  getFps() {
-    const fps = this.draws / (+new Date() - this.lastDraw) * 1000;
-    if (fps === Infinity) {
-      return 0;
-    }
-    this.draws = 0;
-    this.lastDraw = +new Date();
-    return fps;
   }
 }
 
