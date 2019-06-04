@@ -1,16 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>React Boilerplate</title>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>CHIP-8 Emulator</title>
 </head>
-
 <body>
-  <h1>sdf</h1>
-  <script src="./dist/chip8.js"></script>
-</body>
+  <div class='container'>
+    <h1 class='logo'>Chip-8 Emulator</h1>
+    <canvas id='myCanvas'></canvas>
 
+    <div class='control-panel'>
+      <section id='forms'>
+        <form action=''>
+          <label for='program'>Program</label>
+          <select id='program'>
+            <option>
+    
+            </option>
+          </select>
+        </form>
+      </section>
+      <dl>
+        <dt>Program</dt>
+        <dd id='loaded-program'>None</dd>
+      </dl>
+    </div>
+  </div>
+</body>
 </html>
