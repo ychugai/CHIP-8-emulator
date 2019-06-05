@@ -6,4 +6,4 @@
 
 2. `npm run start` (`npm run build` for prod.)
 
-3. open `/dist/index.html` in your browser
+3. open `./dist/index.html` in your browser
