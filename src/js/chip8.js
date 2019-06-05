@@ -132,7 +132,6 @@ class Chip8 {
   }
 
   start() {
-
     if (!this.renderer) {
       throw new Error('You must specify a renderer.');
     }
@@ -246,9 +245,7 @@ class Chip8 {
         break;
 
       case 0x8000:
-
         switch (opcode & 0x000f) {
-
             // 8xy0 - Set Vx = Vy
           case 0x0000:
             this.v[x] = this.v[y];
@@ -361,7 +358,6 @@ class Chip8 {
 
       case 0xE000:
         switch (opcode & 0x00FF) {
-
           // Ex9E - Skip next instruction if key with value stored in Vx is pressed
           case 0x009E:
             if (this.keys[this.v[x]]) {
@@ -381,9 +377,7 @@ class Chip8 {
         break;
 
       case 0xF000:
-
         switch (opcode & 0x00FF) {
-
           // Fx07 - Set Vx = value stored in delay timer
           case 0x0007:
             this.v[x] = this.delayTimer;
@@ -391,7 +385,6 @@ class Chip8 {
 
             // Fx0A - Wait for a key press, store value of the key in Vx
           case 0x000A:
-
             const oldKeyDown = this.setKey;
             const self = this;
 
@@ -411,13 +404,6 @@ class Chip8 {
           case 0x0015:
             this.delayTimer = this.v[x];
             break;
-
-            // LD ST, Vx
-            // Fx18
-          //   // Set sound timer to Vx.
-          // case 0x0018:
-          //   this.soundTimer = this.v[x];
-          //   break;
 
             // Fx1E - Set I = I + Vx
           case 0x001E:
@@ -453,9 +439,7 @@ class Chip8 {
               this.v[i] = this.memory[this.i + i];
             }
             break;
-
         }
-
         break;
 
       default:
